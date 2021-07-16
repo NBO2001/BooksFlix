@@ -1,6 +1,3 @@
-import react from "react";
-import styled from "styled-components";
-
 import SectionSuggetion from "../ImageSuggestion";
 import TitleBook from "../Title";
 import FieldSynopse from "../FieldSynopse";
