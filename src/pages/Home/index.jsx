@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TopBar, ContentHome } from "../../components/index";
+import { TopBar, ContentHome, MainPage, ConteinerCarousel, SimpleSlider } from "../../components/index";
 
 
 const Home = () => {
@@ -9,10 +9,11 @@ const Home = () => {
     const bookSynopse = "Feyre's survival rests upon her ability to hunt and kill – the forest where she lives is a cold, bleak place in the long winter months. So when she spots a deer in the forest being pursued by a wolf, she cannot resist fighting it for the flesh. But to do so, she must kill the predator and killing something so precious comes at a price ... "
     
     return (
-        <>
+        <MainPage>
             <TopBar />
             <ContentHome urlImg={urlImg} bookTitle={bookTitle} bookSynopse={bookSynopse}/>
-        </>
+            <ConteinerCarousel><SimpleSlider /></ConteinerCarousel>
+        </MainPage>
     );
 };
 
