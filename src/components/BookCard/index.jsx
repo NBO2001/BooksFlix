@@ -19,6 +19,6 @@ const Card = styled.div`
 
 `;
 
-const BookCard = ({ photo }) => <Card photo={photo} />;
+const BookCard = ({ onClick, photo }) => <Card onClick={onClick} photo={photo} />;
 
 export default BookCard;

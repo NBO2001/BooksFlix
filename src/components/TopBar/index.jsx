@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-
+import Select from "../Select";
 
 export const TopMenu = styled.section`
     background-color: ${(props) => props.theme.colors.background};
@@ -33,7 +33,7 @@ export const ItensMenu = styled.a`
 `;
 
 
-const TopBar = () => {
+const TopBar = ({onChange}) => {
     return(
         <TopMenu>
 
@@ -42,6 +42,11 @@ const TopBar = () => {
                 <ItensMenu href="/">Recents</ItensMenu>
                 <ItensMenu href="/">New Books</ItensMenu>
                 <ItensMenu href="/">Import Book</ItensMenu>
+                <Select onChange={onChange}>
+                    <option value="pt">Pt - Br</option>
+                    <option value="en">En - USA</option>
+                </Select>
+               
             </NavMenu>
         </TopMenu>
     );

@@ -7,19 +7,20 @@ export const ButtonStyle = styled.button`
     margin-bottom: 0.5rem;
     cursor: pointer;
     border-radius: 15px;
+    color: ${(props) => props.theme.colors.text};
     font-size: 1.2em;
     border: 1px solid black;
     background-color: #8c8686;
     :hover{
         background-color: ${(props) => props.theme.colors.primary};
         font-size: 1.3em;
-        color: ${(props) => props.theme.colors.text};
+        color: ${(props) => props.theme.colors.background};
     }
 `;
 
-const Button = ({children}) => {
+const Button = ({onClick, children}) => {
     return(
-        <ButtonStyle>{children}</ButtonStyle>
+        <ButtonStyle onClick={onClick}>{children}</ButtonStyle>
     );
 }
 
