@@ -9,6 +9,10 @@ const theme = {
     fonts: {
       fontFamily: 'Heebo, sans-serif',
     },
+    colorsread:{
+      background: 'rgb(231, 214, 214)',
+      text: 'black',
+    },
   };
   
   export default theme;

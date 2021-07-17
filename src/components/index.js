@@ -11,3 +11,5 @@ export { default as Button } from "./Button";
 export { default as SectionSynpse } from "./DivSynopse";
 export { default as BookParagraph } from "./Paragraph";
 export { default as Select } from "./Select";
+export { default as MainBody } from "./MainBody";
+export { default as PaperSimulation} from "./PaperSimulation";

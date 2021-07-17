@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from "../../config/configApi";
+import { useSelector } from "react-redux";
 
 import { TopBar, ContentHome, MainPage, ConteinerCarousel, 
     SimpleSlider, BookCard, Modal, Button, FieldSynopse,
@@ -9,6 +10,8 @@ import { TopBar, ContentHome, MainPage, ConteinerCarousel,
 const Home = () => {
     const [lang, setLang] = useState('en');
 
+    const {language}  = useSelector((state) => state.language);
+    console.log(language);
     //Status Modal Open/Close
     const [modalOpened, setModalOpened] = useState(false);
 
@@ -60,8 +63,7 @@ const Home = () => {
     }, [lang]);
 
     const bookRead = (id) => {
-        setModalContent('');
-        setModalOpened(true);
+        window.location.href = `/read/${id}`;
     }
     const bookInformation = (id) => {
         setModalContent('');
