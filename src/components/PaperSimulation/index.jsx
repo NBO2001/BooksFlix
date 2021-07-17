@@ -47,6 +47,7 @@ const PaperSimulation = ({ bookId }) => {
                 chapters.map((item) => {
                     return (
                         <>
+                        
                             <h3>{item.chapter === 0? 'Prologo': 'Chapther ' + item.chapter}</h3>
                             <p> { returnBreakLine(item.content) } </p>
                         </>
