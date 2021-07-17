@@ -18,14 +18,13 @@ const App = () => {
         <Reset />
         <Router>
           <Switch>
-            <Route path='/home'>
-                <Home />
-            </Route>
-            <Route path='/read/:idbook' component={ViewBook}/>
 
-            <Route path='/'>
-                  <Root />
-            </Route>
+            <Route path='/' component={Root} exact/>
+
+            <Route path='/home/:languages' component={Home}/>
+
+            <Route path='/read/:languages/:idbook' component={ViewBook}/>
+
           </Switch>
         </Router>
       </ThemeProvider>

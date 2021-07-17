@@ -4,15 +4,15 @@ import api from "../../config/configApi";
 import { setBook } from "../../redux/modules/book";
 
 const PaperSimulation = ({ bookId }) => {
+    
+    const { language } = useSelector((state) => state.language);
 
-    const [lang, setLang] = useState('en');
     const [chapters, setChapters] = useState({});
     const dispatch = useDispatch();
 
-
     const suggetionBook = async () => {
     
-        await api.get('/api/'+lang+'/bookslist/'+bookId).then((res) => {
+        await api.get('/api/'+language+'/bookslist/'+bookId).then((res) => {
             const [ data ] = res.data;
             setChapters(data.chapters);
             dispatch(setBook(data)) 
@@ -46,11 +46,11 @@ const PaperSimulation = ({ bookId }) => {
             return (
                 chapters.map((item) => {
                     return (
-                        <>
-                        
+                        <div key={"Na"+item.chapter.toString()}>
+
                             <h3>{item.chapter === 0? 'Prologo': 'Chapther ' + item.chapter}</h3>
                             <p> { returnBreakLine(item.content) } </p>
-                        </>
+                        </div>
                     )
                    
                 })
@@ -64,6 +64,9 @@ const PaperSimulation = ({ bookId }) => {
     useEffect(()=>{
         suggetionBook();
     },[bookId]);
+    useEffect(()=>{
+        suggetionBook();
+    },[language]);
 
 
     return (   
