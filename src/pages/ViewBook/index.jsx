@@ -21,7 +21,7 @@ const ViewBook = () => {
     return (
         <MainBody>
             <TopBar onChange={(e) => setLang(e.target.value)} />
-            <PaperSimulation languages={languages} bookId={idbook}/>
+            <PaperSimulation bookId={idbook}/>
         </MainBody>
     );
 

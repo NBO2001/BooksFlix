@@ -1,7 +1,34 @@
 import react, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 import api from "../../config/configApi";
 import { setBook } from "../../redux/modules/book";
+
+export const BookDiv = styled.div`
+    height:  80vh;
+    overflow-y: auto;
+    
+`;
+
+
+export const BookBody = styled.div`
+    padding: 0.8rem;
+    line-height: 1.6rem;
+`;
+export const BookTitle = styled.h3`    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 2em;
+    font-weight: bolder;
+
+`;
+
+export const BookParagraph = styled.p`
+    margin-bottom: 0.8rem;  
+`;
 
 const PaperSimulation = ({ bookId }) => {
     
@@ -34,7 +61,7 @@ const PaperSimulation = ({ bookId }) => {
             
             endTxt.map((braekLine) => {
                 return (
-                    <p>{braekLine}</p>
+                    <BookParagraph>{braekLine}</BookParagraph>
                 )
             })
             
@@ -46,11 +73,11 @@ const PaperSimulation = ({ bookId }) => {
             return (
                 chapters.map((item) => {
                     return (
-                        <div key={"Na"+item.chapter.toString()}>
+                        <BookBody key={"Na"+item.chapter.toString()}>
 
-                            <h3>{item.chapter === 0? 'Prologo': 'Chapther ' + item.chapter}</h3>
+                            <BookTitle>{item.chapter === 0? 'Prologo': 'Chapther ' + item.chapter}</BookTitle>
                             <p> { returnBreakLine(item.content) } </p>
-                        </div>
+                        </BookBody>
                     )
                    
                 })
@@ -70,9 +97,9 @@ const PaperSimulation = ({ bookId }) => {
 
 
     return (   
-      <>
+      <BookDiv>
           {showChapter()}
-      </>
+      </BookDiv>
     );
 
 }
