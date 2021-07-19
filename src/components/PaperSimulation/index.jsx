@@ -1,18 +1,45 @@
 import react, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 import api from "../../config/configApi";
 import { setBook } from "../../redux/modules/book";
 
-const PaperSimulation = ({ bookId }) => {
+export const BookDiv = styled.div`
+    height:  80vh;
+    overflow-y: auto;
+    
+`;
 
-    const [lang, setLang] = useState('en');
+
+export const BookBody = styled.div`
+    padding: 0.8rem;
+    line-height: 1.6rem;
+`;
+export const BookTitle = styled.h3`    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 2em;
+    font-weight: bolder;
+
+`;
+
+export const BookParagraph = styled.p`
+    margin-bottom: 0.8rem;  
+`;
+
+const PaperSimulation = ({ bookId }) => {
+    
+    const { language } = useSelector((state) => state.language);
+
     const [chapters, setChapters] = useState({});
     const dispatch = useDispatch();
 
-
     const suggetionBook = async () => {
     
-        await api.get('/api/'+lang+'/bookslist/'+bookId).then((res) => {
+        await api.get('/api/'+language+'/bookslist/'+bookId).then((res) => {
             const [ data ] = res.data;
             setChapters(data.chapters);
             dispatch(setBook(data)) 
@@ -34,7 +61,7 @@ const PaperSimulation = ({ bookId }) => {
             
             endTxt.map((braekLine) => {
                 return (
-                    <p>{braekLine}</p>
+                    <BookParagraph>{braekLine}</BookParagraph>
                 )
             })
             
@@ -46,10 +73,11 @@ const PaperSimulation = ({ bookId }) => {
             return (
                 chapters.map((item) => {
                     return (
-                        <>
-                            <h3>{item.chapter === 0? 'Prologo': 'Chapther ' + item.chapter}</h3>
+                        <BookBody key={"Na"+item.chapter.toString()}>
+
+                            <BookTitle>{item.chapter === 0? 'Prologo': 'Chapther ' + item.chapter}</BookTitle>
                             <p> { returnBreakLine(item.content) } </p>
-                        </>
+                        </BookBody>
                     )
                    
                 })
@@ -63,12 +91,15 @@ const PaperSimulation = ({ bookId }) => {
     useEffect(()=>{
         suggetionBook();
     },[bookId]);
+    useEffect(()=>{
+        suggetionBook();
+    },[language]);
 
 
     return (   
-      <>
+      <BookDiv>
           {showChapter()}
-      </>
+      </BookDiv>
     );
 
 }

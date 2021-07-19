@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from "../../config/configApi";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import { TopBar, ContentHome, MainPage, ConteinerCarousel, 
     SimpleSlider, BookCard, Modal, Button, FieldSynopse,
@@ -8,10 +9,12 @@ import { TopBar, ContentHome, MainPage, ConteinerCarousel,
 
 
 const Home = () => {
-    const [lang, setLang] = useState('en');
+    const { languages } = useParams();
+    const [lang, setLang] = useState(languages);
 
     const {language}  = useSelector((state) => state.language);
     console.log(language);
+
     //Status Modal Open/Close
     const [modalOpened, setModalOpened] = useState(false);
 
@@ -62,8 +65,8 @@ const Home = () => {
         booksCardsImgs();
     }, [lang]);
 
-    const bookRead = (id) => {
-        window.location.href = `/read/${id}`;
+    const bookRead = () => {
+        window.location.href = `/read/${lang}/${book.id}`;
     }
     const bookInformation = (id) => {
         setModalContent('');
@@ -108,7 +111,7 @@ const Home = () => {
                     <FieldSynopse text={returnSynopse(book.synopsis, 400)}/>
                     
                     <div>         
-                        <Button onClick={() => bookRead(book.id)}><i className="fab fa-leanpub"></i>Read</Button>
+                        <Button onClick={() => bookRead()}><i className="fab fa-leanpub"></i>Read</Button>
                         <Button onClick={() => bookInformation(book.id)}><i className="fas fa-info-circle"></i>Info</Button>
                     </div>
                 </ContentHome>
