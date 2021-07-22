@@ -13,3 +13,7 @@ export { default as BookParagraph } from "./Paragraph";
 export { default as Select } from "./Select";
 export { default as MainBody } from "./MainBody";
 export { default as PaperSimulation} from "./PaperSimulation";
+export { default as Background } from "./Background";
+export { default as Logo } from "./Logo";
+export { default as ConteinerMenu } from "./ConteinerMenu";
+export { default as ButtomMenu } from "./ButtomMenu";

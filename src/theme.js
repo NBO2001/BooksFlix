@@ -1,10 +1,12 @@
 const theme = {
     colors: {
-      primary: '#E50914',
-      background: '#0D0D0D',
-      text: '#DFEFF2',
+      primary: '#0583F2',
+      background: '#262626',
+      text: '#0D0D0D',
       success: '#04ADBF',
-      buttuns: "#59362E",
+      buttuns: "#0597F2",
+      buttonBackgroud: '#262626',
+      deep: '#0D0D0D',
     },
     fonts: {
       fontFamily: 'Heebo, sans-serif',
