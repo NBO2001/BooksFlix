@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import api from "../../config/configApi";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { TopBar, ContentHome, MainPage, ConteinerCarousel, 
     SimpleSlider, BookCard, Modal, Button, FieldSynopse,
-    TitleBook, SectionSynpse, BookParagraph } from "../../components/index";
+    TitleBook, SectionSynpse, BookParagraph, Logo, ButtomMenu, ConteinerMenu } from "../../components/index";
 
 
 const Home = () => {
+
     const { languages } = useParams();
     const [lang, setLang] = useState(languages);
-
-    const {language}  = useSelector((state) => state.language);
-    console.log(language);
+    const [lnConp, setLnConp] = useState({});
 
     //Status Modal Open/Close
     const [modalOpened, setModalOpened] = useState(false);
@@ -25,6 +23,36 @@ const Home = () => {
     
     const [modalContent, setModalContent] = useState("");
 
+    const changeComponents = (ln) => {
+        const pt = {
+          About: 'Sobre',
+          Category: 'Categoria',
+          Lang: 'Idioma: PT',
+          Read: "Ler",
+          Paramet: 'pt',
+ 
+        }
+        const en = {
+            About: 'About',
+          Category: 'Category',
+          Lang: 'Lang: EN',
+          Read: "Read",
+          Paramet: 'en',
+  
+        }
+        
+        switch(ln){
+          case 'pt':
+            setLnConp(pt);
+            break;
+          case 'en':
+            setLnConp(en);
+            break;
+          default:
+            break;
+        }
+    
+      }
     const suggetionBook = async () => {
         
         await api.get('/api/'+lang+'/suggestion').then((res) => {
@@ -32,7 +60,7 @@ const Home = () => {
             setBook(data);
             
         }).catch((err) => {
-            console.log(err.res);
+            
         });
         
         
@@ -44,7 +72,7 @@ const Home = () => {
             setBooksImgs(res.data);
 
         }).catch((err) => {
-            console.log(err.res);
+            
         });
     }
     const nowBook = async (id) => {
@@ -53,11 +81,30 @@ const Home = () => {
             setBook(bookte);
 
         }).catch((err) => {
-            console.log(err.res);
+            
         });
     }
 
+    const changeLang = () => {
+        
+        switch(lang){
+ 
+           case 'pt':
+               setLang('en');
+               changeComponents('en');
+               break;
+           case 'en':
+                 setLang('pt');
+                 changeComponents('pt');
+                 break;
+           default:
+             break;
+        }
+      }
+
     useEffect(()=>{
+       
+        changeComponents(lang);
         suggetionBook();
     }, [lang]);
 
@@ -73,7 +120,7 @@ const Home = () => {
         const contentModel = () => {
             return (
                 <>
-                <TitleBook color="#0D0D0D" bookTitle={book.title}/> 
+                <TitleBook color="#0583F2" bookTitle={book.title}/> 
                 <SectionSynpse>
 
                      {returnSynopse(book.synopsis)}
@@ -84,6 +131,9 @@ const Home = () => {
         setModalContent(contentModel);
         setModalOpened(true);
     }
+    const aboutRed = () => {
+        window.location.href = `/`;
+    };
     const returnSynopse = (text, limit=0) => {
         const endText = limit? text.substring(0,limit)+ "...": text;
    
@@ -93,7 +143,7 @@ const Home = () => {
             
             endTxt.map((braekLine) => {
                 return (
-                    <BookParagraph>{braekLine}</BookParagraph>
+                    <BookParagraph color="#fff">{braekLine}</BookParagraph>
                 )
             })
             
@@ -102,16 +152,28 @@ const Home = () => {
     return (
         <>
             <MainPage>
-                <TopBar onChange={(e) => setLang(e.target.value) } />
+
+                <TopBar>
+                    <Logo >vBOOKS</Logo>
+                    <ButtomMenu/>
+                    <ConteinerMenu id={'showMenu'}>
+
+                        <Button width={'95vw'} onClick={aboutRed}>{lnConp.About}</Button>
+                        <Button width={'95vw'}>{lnConp.Category}</Button>
+                
+                    <Button width={'95vw'} id={"chanLang"} onClick={changeLang}>{lnConp.Lang}</Button>
+
+                    </ConteinerMenu>
+                 </TopBar>
         
                 <ContentHome urlImg={book.imgUrl} >
 
-                    <TitleBook bookTitle={book.title}/>  
+                    <TitleBook color="#0583F2" bookTitle={book.title}/>  
 
                     <FieldSynopse text={returnSynopse(book.synopsis, 400)}/>
                     
                     <div>         
-                        <Button onClick={() => bookRead()}><i className="fab fa-leanpub"></i>Read</Button>
+                        <Button onClick={() => bookRead()}><i className="fab fa-leanpub"></i>{lnConp.Read}</Button>
                         <Button onClick={() => bookInformation(book.id)}><i className="fas fa-info-circle"></i>Info</Button>
                     </div>
                 </ContentHome>
