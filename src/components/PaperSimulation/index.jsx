@@ -74,7 +74,6 @@ const PaperSimulation = ({ bookId }) => {
                 chapters.map((item) => {
                     return (
                         <BookBody key={"Na"+item.chapter.toString()}>
-
                             <BookTitle>{item.chapter === 0? 'Prologo': 'Chapther ' + item.chapter}</BookTitle>
                             <p> { returnBreakLine(item.content) } </p>
                         </BookBody>

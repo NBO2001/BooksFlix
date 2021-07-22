@@ -6,13 +6,13 @@ export const Synopse = styled.p`
     padding: 0.5rem;
     margin-bottom: 2rem;
     margin-left: 0.5rem;
-    font-size: 1.2em; 
-
+    font-size: 1.1em; 
+    color: ${(props) => props.color?(props) => props.color: (props) => props.theme.primary};
 `;
 
-const FieldSynopse = ({text}) => {
+const FieldSynopse = ({color, text}) => {
     return(
-        <Synopse>{text}</Synopse>
+        <Synopse color={color}>{text}</Synopse>
     );
 }
 

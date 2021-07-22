@@ -13,6 +13,7 @@ export const MenuItens = styled.div`
         flex-direction: column;
         height: 92vh;
         width: 100vw;
+        z-index: 998;
 
     }
 `;

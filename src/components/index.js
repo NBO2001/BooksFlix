@@ -17,3 +17,4 @@ export { default as Background } from "./Background";
 export { default as Logo } from "./Logo";
 export { default as ConteinerMenu } from "./ConteinerMenu";
 export { default as ButtomMenu } from "./ButtomMenu";
+export { default as AuthorMsg } from   './AuthorMsg';

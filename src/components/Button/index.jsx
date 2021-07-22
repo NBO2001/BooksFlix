@@ -16,11 +16,14 @@ export const ButtonStyle = styled.button`
         background-color: ${(props) => props.theme.colors.buttonBackgroud};
         color: ${(props) => props.theme.colors.primary};
     }
+    @media screen and (max-width:700px) {
+        width: ${(props) => props.width? (props) => props.width :"150px"};
+    }
 `;
 
-const Button = ({id, onClick, children}) => {
+const Button = ({id, width, onClick, children}) => {
     return(
-        <ButtonStyle id={id} onClick={onClick}>{children}</ButtonStyle>
+        <ButtonStyle width={width} id={id} onClick={onClick}>{children}</ButtonStyle>
     );
 }
 
