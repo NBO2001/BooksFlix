@@ -1,8 +1,9 @@
-import react, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import api from "../../config/configApi";
 import { setBook } from "../../redux/modules/book";
+import { Loader } from "../index";
 
 export const BookDiv = styled.div`
     height:  80vh;
@@ -83,7 +84,7 @@ const PaperSimulation = ({ bookId }) => {
             )
         }else{
      
-            return (<h2>i'm here 2</h2>)
+            return (<Loader />)
         }
     }
 

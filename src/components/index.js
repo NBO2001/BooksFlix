@@ -18,3 +18,5 @@ export { default as Logo } from "./Logo";
 export { default as ConteinerMenu } from "./ConteinerMenu";
 export { default as ButtomMenu } from "./ButtomMenu";
 export { default as AuthorMsg } from   './AuthorMsg';
+export { default as Loader } from './Loader';
+export { default as Skeleton } from './Skeleton';

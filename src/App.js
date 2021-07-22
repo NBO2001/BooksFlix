@@ -33,9 +33,4 @@ const App = () => {
 
 }
 
-function Child() {
-  var { id } = useParams();
-  return id;
-}
-
 export default App;

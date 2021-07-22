@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import api from "../../config/configApi";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { TopBar, ContentHome, MainPage, ConteinerCarousel, 
@@ -61,7 +60,7 @@ const Home = () => {
             setBook(data);
             
         }).catch((err) => {
-            console.log(err.res);
+            
         });
         
         
@@ -73,7 +72,7 @@ const Home = () => {
             setBooksImgs(res.data);
 
         }).catch((err) => {
-            console.log(err.res);
+            
         });
     }
     const nowBook = async (id) => {
@@ -82,7 +81,7 @@ const Home = () => {
             setBook(bookte);
 
         }).catch((err) => {
-            console.log(err.res);
+            
         });
     }
 
